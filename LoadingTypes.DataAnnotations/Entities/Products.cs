@@ -18,5 +18,7 @@ namespace LoadingTypes.DataAnnotations.Entities
         public int Quantity { get; set; }
         [Column("Avaible")]
         public Boolean IsInStock { get; set; } = false;
+
+        public Categories Categories { get; set; }
     }
 }

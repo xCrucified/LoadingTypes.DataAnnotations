@@ -20,5 +20,8 @@ namespace LoadingTypes.DataAnnotations.Entities
         public int PositionId { get; set; }
         [ForeignKey("Shops")]
         public int ShopId { get; set; }
+
+        public Positions Positions { get; set; }
+        public Shops Shops { get; set; }
     }
 }

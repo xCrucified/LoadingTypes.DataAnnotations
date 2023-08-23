@@ -4,6 +4,7 @@ using LoadingTypes.DataAnnotations.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoadingTypes.DataAnnotations.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230822110821_Filling")]
+    partial class Filling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,7 +281,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 1,
-                            CategoryId = 1,
                             Discount = 47f,
                             IsInStock = true,
                             Name = "Bottle of Water",
@@ -289,7 +290,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 2,
-                            CategoryId = 2,
                             Discount = 12f,
                             IsInStock = false,
                             Name = "Glasses",
@@ -299,7 +299,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 3,
-                            CategoryId = 3,
                             Discount = 134f,
                             IsInStock = true,
                             Name = "Weight",
@@ -309,7 +308,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 4,
-                            CategoryId = 4,
                             Discount = 2f,
                             IsInStock = true,
                             Name = "VGA Monitor",
@@ -319,7 +317,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 5,
-                            CategoryId = 5,
                             Discount = 0f,
                             IsInStock = true,
                             Name = "Keyboard",
@@ -329,7 +326,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 6,
-                            CategoryId = 6,
                             Discount = 45f,
                             IsInStock = true,
                             Name = "Steam Deck",
@@ -339,7 +335,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         new
                         {
                             Id = 7,
-                            CategoryId = 7,
                             Discount = 0f,
                             IsInStock = true,
                             Name = "Morshinska",

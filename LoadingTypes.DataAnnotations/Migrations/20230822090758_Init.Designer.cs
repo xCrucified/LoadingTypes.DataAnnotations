@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoadingTypes.DataAnnotations.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230821171751_UpdateConnections")]
-    partial class UpdateConnections
+    [Migration("20230822090758_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,28 +41,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Waiter"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Chef"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Administrator"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Barman"
-                        });
                 });
 
             modelBuilder.Entity("LoadingTypes.DataAnnotations.Entities.Cities", b =>
@@ -72,9 +50,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CountriesId")
-                        .HasColumnType("int");
 
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
@@ -87,7 +62,7 @@ namespace LoadingTypes.DataAnnotations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountriesId");
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
                 });
@@ -136,9 +111,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoriesId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
@@ -161,7 +133,7 @@ namespace LoadingTypes.DataAnnotations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriesId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -178,9 +150,6 @@ namespace LoadingTypes.DataAnnotations.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CitiesId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -193,7 +162,7 @@ namespace LoadingTypes.DataAnnotations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CitiesId");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Shops");
                 });
@@ -222,16 +191,10 @@ namespace LoadingTypes.DataAnnotations.Migrations
                     b.Property<int>("PositionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PositionsId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ShopId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShopsId")
                         .HasColumnType("int");
 
                     b.Property<string>("Surname")
@@ -240,43 +203,61 @@ namespace LoadingTypes.DataAnnotations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PositionsId");
+                    b.HasIndex("PositionId");
 
-                    b.HasIndex("ShopsId");
+                    b.HasIndex("ShopId");
 
                     b.ToTable("Workers");
                 });
 
             modelBuilder.Entity("LoadingTypes.DataAnnotations.Entities.Cities", b =>
                 {
-                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Countries", null)
+                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Countries", "Countries")
                         .WithMany("Cities")
-                        .HasForeignKey("CountriesId");
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Countries");
                 });
 
             modelBuilder.Entity("LoadingTypes.DataAnnotations.Entities.Products", b =>
                 {
-                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Categories", null)
+                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Categories", "Categories")
                         .WithMany("Products")
-                        .HasForeignKey("CategoriesId");
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("LoadingTypes.DataAnnotations.Entities.Shops", b =>
                 {
-                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Cities", null)
+                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Cities", "Cities")
                         .WithMany("Shops")
-                        .HasForeignKey("CitiesId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("LoadingTypes.DataAnnotations.Entities.Workers", b =>
                 {
-                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Positions", null)
+                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Positions", "Positions")
                         .WithMany("Workers")
-                        .HasForeignKey("PositionsId");
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Shops", null)
+                    b.HasOne("LoadingTypes.DataAnnotations.Entities.Shops", "Shops")
                         .WithMany("Workers")
-                        .HasForeignKey("ShopsId");
+                        .HasForeignKey("ShopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Positions");
+
+                    b.Navigation("Shops");
                 });
 
             modelBuilder.Entity("LoadingTypes.DataAnnotations.Entities.Categories", b =>

@@ -16,6 +16,8 @@ namespace LoadingTypes.DataAnnotations.Entities
         public int CityId { get; set; }
         public int? ParkingArea { get; set; }
 
+        public Cities Cities { get; set; }
+
         public ICollection<Workers> Workers { get; set; }
     }
 }
