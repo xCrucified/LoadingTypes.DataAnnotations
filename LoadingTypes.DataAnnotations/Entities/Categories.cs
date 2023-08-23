@@ -10,11 +10,11 @@ namespace LoadingTypes.DataAnnotations.Entities
 {
     public class Categories
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
-        [MaxLength(60)]
-        [Required]
-        [Column("Category")]
+        //[MaxLength(60)]
+        //[Required]
+        //[Column("Category")]
         public string Name { get; set; }
 
         public ICollection<Products>? Products { get; set; }

@@ -13,12 +13,13 @@ namespace LoadingTypes.DataAnnotations.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
         public float Discount { get; set; }
-        [ForeignKey("Categories")]
+        //[ForeignKey("Categories")]
         public int? CategoryId { get; set; }
         public int Quantity { get; set; }
-        [Column("Avaible")]
+        //[Column("Avaible")]
         public Boolean IsInStock { get; set; } = false;
 
+        public ICollection<Shops> Shops { get; set; }
         public Categories Categories { get; set; }
     }
 }

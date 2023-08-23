@@ -10,13 +10,13 @@ namespace LoadingTypes.DataAnnotations.Entities
 {
     public class Cities
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
-        [MaxLength(100)]
-        [Column("City")]
-        [Required]
+        //[MaxLength(100)]
+        //[Column("City")]
+        //[Required]
         public string Name { get; set; }
-        [ForeignKey("Countries")]
+        //[ForeignKey("Countries")]
         public int? CountryId { get; set; }
 
         public Countries? Countries { get; set; }

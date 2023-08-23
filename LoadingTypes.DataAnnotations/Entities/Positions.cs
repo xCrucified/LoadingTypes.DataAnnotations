@@ -10,7 +10,7 @@ namespace LoadingTypes.DataAnnotations.Entities
     public class Positions
     {
         public int Id { get; set; }
-        [Column("Position")]
+        //[Column("Position")]
         public string Name { get; set; }
 
         public ICollection<Workers> Workers { get; set; }

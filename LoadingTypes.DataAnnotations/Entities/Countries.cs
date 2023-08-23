@@ -10,10 +10,10 @@ namespace LoadingTypes.DataAnnotations.Entities
 {
     public class Countries
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
-        [Column("Country")]
-        [Required]
+        //[Column("Country")]
+        //[Required]
         public string Name { get; set; }
         //navigate
         public ICollection<Cities> Cities { get; set; }
